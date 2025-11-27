@@ -4,15 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Water Supply System</title>
+
   <style>
+
+    /* FIXED WIDTH CONTAINER */
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+    }
+
     body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #e9f2f7; }
-    header { background: linear-gradient(135deg, #0077b6, #023e8a); color: #fff; padding: 30px; text-align: center; font-size: 32px; font-weight: bold; animation: fadeIn 1.2s; }
+
+    header {
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      animation: fadeIn 1.2s;
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      gap:15px;
+    }
+
     nav { background: #023e8a; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
     nav a { color: #fff; margin: 0 22px; text-decoration: none; font-size: 18px; transition: 0.3s; }
     nav a:hover { color: #caf0f8; }
 
-    section { padding: 50px; max-width: 1200px; margin: auto; animation: fadeUp 1s; }
-    h2 { color: #023e8a; text-align: left; font-size: 28px; }
+    section { padding: 50px 0; animation: fadeUp 1s; }
+    h2 { color: #023e8a; font-size: 28px; }
 
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 20px; }
     .sensor-box { background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
@@ -24,47 +47,43 @@
     button { background: #0077b6; color: #fff; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; margin-top: 15px; font-size: 16px; transition: 0.3s; }
     button:hover { background: #023e8a; }
 
-    footer { background: #023e8a; color: #fff; padding: 25px; text-align: center; margin-top: 50px; }
+    footer { background: #023e8a; color: #fff; padding: 25px; text-align: center; margin-top: 40px; }
 
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes fadeUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
     @keyframes pulse { 0% {opacity: 1;} 50% {opacity: 0.6;} 100% {opacity: 1;} }
-  /* Responsive for tablets and mobiles */
-@media screen and (max-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    /* RESPONSIVE */
+    @media screen and (max-width: 1024px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
     }
-}
 
-@media screen and (max-width: 768px) {
-    header { font-size: 28px; padding: 20px; }
-    nav a { display: block; margin: 10px 0; font-size: 16px; }
-    .grid { grid-template-columns: 1fr; gap: 20px; }
-    section { padding: 40px 20px; }
-    h2 { font-size: 24px; }
-    .sensor-box .value { font-size: 26px; }
-    button { width: 100%; padding: 12px; font-size: 16px; }
-}
+    @media screen and (max-width: 768px) {
+      header { font-size: 28px; padding: 20px; }
+      nav a { display: block; margin: 10px 0; font-size: 16px; }
+      .grid { grid-template-columns: 1fr; gap: 20px; }
+      h2 { font-size: 24px; }
+      section { padding: 40px 20px; }
+    }
 
-@media screen and (max-width: 480px) {
-    header { font-size: 22px; padding: 15px; }
-    nav a { font-size: 14px; }
-    h2 { font-size: 20px; }
-    .sensor-box .value { font-size: 22px; }
-    .card { padding: 20px; }
-    input, select, textarea { padding: 10px; font-size: 14px; }
-}
+    @media screen and (max-width: 480px) {
+      header { font-size:22px; padding:15px; }
+      nav a { font-size:14px; }
+    }
 
   </style>
+
 </head>
 <body>
 
-<!-- <header>Smart Water Supply Management System</header> -->
-<header style="display:flex; align-items:center; justify-content:center; gap:15px; background: linear-gradient(135deg, #0077b6, #023e8a); color: #fff; padding: 30px; font-size: 32px; font-weight: bold; animation: fadeIn 1.2s;">
-    <img src="./download (2).png" alt="Smart Water Logo" style="height:80px; width:50px; border-radius:8px;">
-    <span>Smart Water Supply Management System</span>
-</header>
 
+<div class="container"> <!-- ⭐ FIXED WIDTH START -->
+
+
+<header>
+  <img src="./download (2).png" style="height:80px; width:50px; border-radius:8px;">
+  Smart Water Supply Management System
+</header>
 
 <nav>
   <a href="#dashboard">Dashboard</a>
@@ -72,242 +91,201 @@
   <a href="#analytics">Analytics</a>
   <a href="#alerts">Alerts</a>
   <a href="#about">About</a>
+  <a href="#complaints">Complaints</a>
+  <a href="#areaAnalytics">Area Analytics</a>
+  <a href="#areaComplaints">Area Complaints</a>
 </nav>
 
-<!-- DASHBOARD SECTION -->
 <section id="dashboard">
   <h2>Live Monitoring Dashboard</h2>
   <div class="grid">
-    <div class="sensor-box">
-      <h3>Water Flow</h3>
-      <div class="value" id="flow">0 L/min</div>
-    </div>
-    <div class="sensor-box">
-      <h3>Tank Level</h3>
-      <div class="value" id="tank">0%</div>
-    </div>
-    <div class="sensor-box">
-      <h3>Pressure</h3>
-      <div class="value" id="pressure">Normal</div>
-    </div>
+    <div class="sensor-box"><h3>Water Flow</h3><div class="value" id="flow">0 L/min</div></div>
+    <div class="sensor-box"><h3>Tank Level</h3><div class="value" id="tank">0%</div></div>
+    <div class="sensor-box"><h3>Pressure</h3><div class="value" id="pressure">Normal</div></div>
   </div>
   <center><button onclick="updateData()">Refresh Data</button></center>
 </section>
 
-<!-- FEATURES SECTION -->
 <section id="features">
   <h2>System Features</h2>
   <div class="card">
-    <ul style="line-height: 1.9; font-size: 18px;">
-      <li>Real-time water flow, tank level & pressure monitoring</li>
-      <li>AI-based leakage detection & predictive alerts</li>
-      <li>Water consumption analytics (daily, weekly, monthly)</li>
-      <li>Smart scheduling for optimized water distribution</li>
-      <li>Cloud-integrated secure dashboard</li>
-      <li>User & admin role-based access</li>
-      <li>Instant notifications (SMS / App Alerts)</li>
+    <ul style="line-height:1.8; font-size:18px;">
+      <li>Real-time monitoring</li>
+      <li>AI leakage detection</li>
+      <li>Smart scheduling</li>
+      <li>Cloud-based dashboard</li>
+      <li>Alerts & notifications</li>
     </ul>
   </div>
 </section>
 
-<!-- ANALYTICS SECTION -->
 <section id="analytics">
   <h2>Water Consumption Analytics</h2>
   <div class="card">
-    <p><strong>Today's Consumption:</strong> <span id="today">0</span> Liters</p>
-    <p><strong>This Month:</strong> <span id="month">0</span> Liters</p>
+    <p><b>Today's Consumption:</b> <span id="today">0</span> Liters</p>
+    <p><b>This Month:</b> <span id="month">0</span> Liters</p>
     <button onclick="generateReport()">Generate Report</button>
   </div>
 </section>
 
-<!-- ALERTS SECTION -->
 <section id="alerts">
   <h2>System Alerts</h2>
   <div class="card" id="alertBox">No alerts currently.</div>
 </section>
 
-<!-- ABOUT SECTION -->
 <section id="about">
   <h2>About This Project</h2>
   <div class="card">
-    <p style="font-size: 18px; line-height: 1.7;">
-      This Smart Water Supply System is designed to monitor, analyze and optimize water distribution.
-      With advanced IoT sensors, cloud processing and intelligent dashboards, it provides complete
-      real‑time control over water flow, consumption trends and critical alerts.
-    </p>
+    <p style="font-size:18px;">This Smart Water Supply System is designed to monitor, analyze and optimize water distribution. With advanced IoT sensors, cloud processing and intelligent dashboards, it provides complete real‑time control over water flow, consumption trends and critical alerts.</p>
   </div>
 </section>
 
-<!-- <footer>© 2025 Smart Water System | All Rights Reserved</footer> -->
+<!-- ⭐⭐⭐ COMPLAINT FORM SECTION ⭐⭐⭐ -->
+<section id="complaints" style="background:#f8f9fa; padding:60px 0;">
+    <h2 style="text-align:center;">Submit a Complaint</h2>
+    <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
+        If you have any issues related to water supply, timing, pressure, or the system, report them here. The admin will receive your complaint.
+    </p>
+
+    <form style="max-width:600px; margin:0 auto; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+
+        <label>Complaint Category</label>
+        <select required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+            <option>Low Water Pressure</option>
+            <option>No Water Supply</option>
+            <option>Leakage Issue</option>
+            <option>Schedule Problem</option>
+            <option>Other</option>
+        </select>
+
+        <label>Description</label>
+        <textarea placeholder="Write your complaint..." required style="width:100%; padding:12px; height:120px; border-radius:8px; border:1px solid #ccc;"></textarea>
+
+        <button type="submit" style="width:100%;">Submit Complaint</button>
+    </form>
+</section>
+
+<!-- ⭐⭐⭐ AREA SEARCH + ANALYTICS ⭐⭐⭐ -->
+<section id="areaAnalytics" style="background:#eef3ff; padding:60px 0;">
+    <h2 style="text-align:center;">Area-Based Analytics</h2>
+    <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
+        Enter your area — the system will show you the latest water level, pressure, flow status, and supply condition.
+    </p>
+
+    <div style="max-width:500px; margin:0 auto 20px; display:flex; gap:10px;">
+        <input id="areaInput" type="text" placeholder="Enter Area Name" 
+            style="flex:1; padding:14px; border-radius:8px; border:1px solid #ccc;">
+        <button onclick="searchArea()" style="padding:14px 20px;">Search</button>
+    </div>
+
+    <div id="areaResult" style="max-width:700px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+</section>
+
+<!-- ⭐⭐⭐ AREA COMPLAINT LOOKUP ⭐⭐⭐ -->
+<section id="areaComplaints" style="background:#fff4f4; padding:60px 0;">
+    <h2 style="text-align:center;">Area-Based Complaint Lookup (Admin)</h2>
+    <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
+        Enter your area — the system will show recent complaints for that area.
+    </p>
+
+    <div style="max-width:500px; margin:0 auto 20px; display:flex; gap:10px;">
+        <input id="complaintAreaInput" type="text" placeholder="Enter Area Name" 
+            style="flex:1; padding:14px; border-radius:8px; border:1px solid #ccc;">
+        <button onclick="searchComplaints()" style="padding:14px 20px; background:#dc3545;">Search</button>
+    </div>
+
+    <div id="complaintResult" style="max-width:800px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+</section>
+
+
+</div> <!-- ⭐ FIXED WIDTH END -->
+
+<footer>© 2025 Smart Water System | All Rights Reserved</footer>
+
 
 <script>
 function updateData() {
   document.getElementById('flow').innerHTML = Math.floor(Math.random() * 40) + ' L/min';
   document.getElementById('tank').innerHTML = Math.floor(Math.random() * 100) + '%';
   document.getElementById('pressure').innerHTML = ['Normal','Low','High'][Math.floor(Math.random()*3)];
-
-  let alertBox = document.getElementById('alertBox');
-  let tank = parseInt(document.getElementById('tank').innerHTML);
-  if(tank < 20){ alertBox.innerHTML = '⚠️ Critical Alert: Tank Level Too Low!'; }
-  else{ alertBox.innerHTML = 'No alerts currently.'; }
 }
 
 function generateReport(){
   document.getElementById('today').innerHTML = Math.floor(Math.random() * 500) + 100;
   document.getElementById('month').innerHTML = Math.floor(Math.random() * 5000) + 2000;
-  alert('Water Usage Report Generated Successfully!');
+}
+
+
+const areaData = {
+    "City Road": {level: "82%", pressure: "High", flow: "Smooth", status: "Normal"},
+    "Madina Town": {level: "50%", pressure: "Low", flow: "Moderate", status: "Warning"},
+    "Model Colony": {level: "20%", pressure: "Critical", flow: "Very Low", status: "Critical"}
+};
+
+function searchArea() {
+    const input = document.getElementById('areaInput').value.trim();
+    const resultBox = document.getElementById('areaResult');
+
+    if(areaData[input]){
+        const data = areaData[input];
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+            <h3>Analytics for <b>${input}</b></h3>
+            <p><b>Water Level:</b> ${data.level}</p>
+            <p><b>Pressure:</b> ${data.pressure}</p>
+            <p><b>Flow Rate:</b> ${data.flow}</p>
+            <p><b>Status:</b> ${data.status}</p>
+        `;
+    } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `<p style='color:red;'>No data found for this area.</p>`;
+    }
+}
+
+const complaintData = {
+    "City Road": [
+        {name:"Ali", issue:"Leakage", status:"Pending"},
+        {name:"Sana", issue:"Low Pressure", status:"Resolved"}
+    ],
+    "Madina Town": [
+        {name:"Haris", issue:"No Supply", status:"Pending"}
+    ],
+    "Model Colony": [
+        {name:"Ayesha", issue:"Very Low Pressure", status:"In Progress"},
+        {name:"Usman", issue:"Leak Detected", status:"Pending"}
+    ]
+};
+
+function searchComplaints(){
+    const input = document.getElementById('complaintAreaInput').value.trim();
+    const resultBox = document.getElementById('complaintResult');
+
+    if(complaintData[input]){
+        let list = "";
+        complaintData[input].forEach(c => {
+            list += `
+                <div style='padding:12px; margin-bottom:10px; border-bottom:1px solid #ddd;'>
+                    <p><b>Name:</b> ${c.name}</p>
+                    <p><b>Issue:</b> ${c.issue}</p>
+                    <p><b>Status:</b> ${c.status}</p>
+                </div>
+            `;
+        });
+
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `<h3>Complaints for <b>${input}</b></h3>${list}`;
+        
+    } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `<p style='color:red;'>No complaints found for this area.</p>`;
+    }
 }
 </script>
-
-    <!-- Complaints Section -->
-    <section class="complaints" id="complaints" style="padding:60px 20px; background:#f8f9fa;">
-        <h2 style="text-align:center; font-size:2rem; margin-bottom:20px;">Submit a Complaint</h2>
-        <p style="text-align:center; max-width:600px; margin:0 auto 30px; font-size:1rem; color:#555;">
-            If you have any issues related to water supply, timing, pressure, or the system, report them here. The admin will receive your complaint and process it accordingly.
-        </p>
-
-        <form style="max-width:600px; margin:0 auto; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); animation:fadeInUp 0.8s;">
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter your name" required style="width:100%; padding:12px; margin:8px 0 16px; border-radius:8px; border:1px solid #ccc;">
-
-            <label>Email</label>
-            <input type="email" placeholder="Enter your email" required style="width:100%; padding:12px; margin:8px 0 16px; border-radius:8px; border:1px solid #ccc;">
-
-            <label>Complaint Category</label>
-            <select required style="width:100%; padding:12px; margin:8px 0 16px; border-radius:8px; border:1px solid #ccc;">
-                <option>Low Water Pressure</option>
-                <option>No Water Supply</option>
-                <option>Leakage Issue</option>
-                <option>Schedule Problem</option>
-                <option>Other</option>
-            </select>
-
-            <label>Describe Your Issue</label>
-            <textarea placeholder="Write your complaint here..." required style="width:100%; padding:12px; height:120px; margin:8px 0 16px; border-radius:8px; border:1px solid #ccc;"></textarea>
-
-            <button type="submit" style="width:100%; padding:14px; background:#007bff; color:white; font-size:1rem; border:none; border-radius:8px; cursor:pointer; transition:0.3s;">
-                Submit Complaint
-            </button>
-        </form>
-    </section>
-
-    <!-- Area Search + Analytics Section -->
-    <section id="areaAnalytics" style="padding:60px 20px; background:#eef3ff;">
-        <h2 style="text-align:center; font-size:2rem; margin-bottom:20px;">Area-Based Analytics</h2>
-        <p style="text-align:center; max-width:600px; margin:0 auto 30px; color:#555;">
-Enter your area below — the system will show you the latest water level, pressure, flow status, and supply condition for that area.
-        <!-- Search Box -->
-        <div style="max-width:500px; margin:0 auto 30px; display:flex; gap:10px;">
-            <input id="areaInput" type="text" placeholder="Enter Area Name (e.g., Model Colony)" 
-                style="flex:1; padding:14px; border-radius:8px; border:1px solid #ccc;">
-            <button onclick="searchArea()" 
-                style="padding:14px 20px; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer;">
-                Search
-            </button>
-        </div>
-
-        <!-- Results Card -->
-        <div id="areaResult" style="max-width:700px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); animation:fadeInUp 0.8s;"></div>
-    </section>
-    
-
-    <script>
-        const areaData = {
-            "City Road": {level: "82%", pressure: "High", flow: "Smooth", status: "Normal"},
-            "Madina Town": {level: "50%", pressure: "Low", flow: "Moderate", status: "Warning"},
-            "Model Colony": {level: "20%", pressure: "Critical", flow: "Very Low", status: "Critical"},
-            "Block 10": {level: "60%", pressure: "Medium", flow: "Stable", status: "Normal"}
-        };
-
-        function searchArea() {
-            const input = document.getElementById('areaInput').value.trim();
-            const resultBox = document.getElementById('areaResult');
-
-            if(areaData[input]){
-                const data = areaData[input];
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `
-                    <h3 style="font-size:1.6rem; margin-bottom:10px;">Analytics for <b>${input}</b></h3>
-                    <p><b>Water Level:</b> ${data.level}</p>
-                    <p><b>Pressure:</b> ${data.pressure}</p>
-                    <p><b>Flow Rate:</b> ${data.flow}</p>
-                    <p><b>Status:</b> ${data.status}</p>
-                `;
-            } else {
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `<p style='color:red;'>No data found for this area.</p>`;
-            }
-        }
-    </script>
-
-    <!-- Area-Based Complaints Section -->
-    <section id="areaComplaints" style="padding:60px 20px; background:#fff4f4;">
-        <h2 style="text-align:center; font-size:2rem; margin-bottom:20px;">Area-Based Complaint Lookup For Administrator</h2>
-
-        <p style="text-align:center; max-width:600px; margin:0 auto 30px; color:#555;">
-            Enter your area — the system will show you the recent complaints and their status for that area.
-        </p>
-
-        <!-- Complaint Search -->
-        <div style="max-width:500px; margin:0 auto 30px; display:flex; gap:10px;">
-            <input id="complaintAreaInput" type="text" placeholder="Enter Area Name (e.g., Madina Town)" 
-                style="flex:1; padding:14px; border-radius:8px; border:1px solid #ccc;">
-            <button onclick="searchComplaints()" 
-                style="padding:14px 20px; background:#dc3545; color:white; border:none; border-radius:8px; cursor:pointer;">
-                Search
-            </button>
-        </div>
-
-        <!-- Complaint Results Box -->
-        <div id="complaintResult" style="max-width:800px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); animation:fadeInUp 0.8s;"></div>
-    </section>
-   
-
-    <script>
-        const complaintData = {
-            "City Road": [
-                {name:"Ali", issue:"Leakage", status:"Pending"},
-                {name:"Sana", issue:"Low Pressure", status:"Resolved"}
-            ],
-            "Madina Town": [
-                {name:"Haris", issue:"No Supply", status:"Pending"}
-            ],
-            "Model Colony": [
-                {name:"Ayesha", issue:"Very Low Pressure", status:"In Progress"},
-                {name:"Usman", issue:"Leak Detected", status:"Pending"}
-            ]
-        };
-
-        function searchComplaints(){
-            const input = document.getElementById('complaintAreaInput').value.trim();
-            const resultBox = document.getElementById('complaintResult');
-
-            if(complaintData[input]){
-                let list = "";
-                complaintData[input].forEach(c => {
-                    list += `
-                        <div style='padding:12px; margin-bottom:10px; border-bottom:1px solid #ddd;'>
-                            <p><b>Name:</b> ${c.name}</p>
-                            <p><b>Issue:</b> ${c.issue}</p>
-                            <p><b>Status:</b> ${c.status}</p>
-                        </div>
-                    `;
-                });
-
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `
-                    <h3 style='font-size:1.6rem;'>Complaints for <b>${input}</b></h3>
-                    ${list}
-                `;
-            } else {
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `<p style='color:red;'>No complaints found for this area.</p>`;
-            }
-        }
-    </script>
-    
-    <footer>© 2025 Smart Water Management System | All Rights Reserved</footer>
-    
 
 </body>
 </html>
