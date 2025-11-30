@@ -30,9 +30,67 @@
       gap:15px;
     }
 
-    nav { background: #023e8a; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-    nav a { color: #fff; margin: 0 22px; text-decoration: none; font-size: 18px; transition: 0.3s; }
-    nav a:hover { color: #caf0f8; }
+    /* NEW NAVBAR */
+    nav { 
+        background: #023e8a; 
+        padding: 15px; 
+        position: sticky; 
+        top: 0; 
+        z-index: 1000; 
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .hamburger {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+
+    .nav-links a { 
+        color: #fff; 
+        margin: 0 20px; 
+        text-decoration: none; 
+        font-size: 18px; 
+        transition: 0.3s; 
+    }
+
+    .nav-links a:hover { color: #caf0f8; }
+
+    /* MOBILE MENU */
+    @media (max-width: 768px) {
+
+      .hamburger {
+          display: block;
+      }
+
+      .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          text-align: center;
+          padding: 12px 0;
+          background: #023e8a;
+      }
+
+      .nav-links a {
+          display: block;
+          margin: 10px 0;
+      }
+
+      .nav-links.show {
+          display: flex;
+      }
+    }
 
     section { padding: 50px 0; animation: fadeUp 1s; }
     h2 { color: #023e8a; font-size: 28px; }
@@ -53,22 +111,21 @@
     @keyframes fadeUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
     @keyframes pulse { 0% {opacity: 1;} 50% {opacity: 0.6;} 100% {opacity: 1;} }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE GRID */
+
     @media screen and (max-width: 1024px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media screen and (max-width: 768px) {
       header { font-size: 28px; padding: 20px; }
-      nav a { display: block; margin: 10px 0; font-size: 16px; }
-      .grid { grid-template-columns: 1fr; gap: 20px; }
       h2 { font-size: 24px; }
+      .grid { grid-template-columns: 1fr; gap: 20px; }
       section { padding: 40px 20px; }
     }
 
     @media screen and (max-width: 480px) {
       header { font-size:22px; padding:15px; }
-      nav a { font-size:14px; }
     }
 
   </style>
@@ -76,24 +133,35 @@
 </head>
 <body>
 
-
-<div class="container"> <!-- ⭐ FIXED WIDTH START -->
-
+<div class="container">
 
 <header>
   <img src="./download (2).png" style="height:80px; width:50px; border-radius:8px;">
   Smart Water Supply Management System
 </header>
 
+<!-- ⭐ NEW RESPONSIVE NAVBAR ⭐ -->
 <nav>
-  <a href="#dashboard">Dashboard</a>
-  <a href="#features">Features</a>
-  <a href="#analytics">Analytics</a>
-  <a href="#alerts">Alerts</a>
-  <a href="#about">About</a>
-  <a href="#complaints">Complaints</a>
-  <a href="#areaAnalytics">Area Analytics</a>
-  <a href="#areaComplaints">Area Complaints</a>
+  <div class="nav-container">
+
+    <div class="logo-text" style="color:white; font-size:20px; font-weight:bold;">
+      Menu
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#features">Features</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#about">About</a>
+      <a href="#complaints">Complaints</a>
+      <a href="#areaAnalytics">Area Analytics</a>
+      <a href="#areaComplaints">Area Complaints</a>
+    </div>
+
+  </div>
 </nav>
 
 <section id="dashboard">
@@ -136,23 +204,23 @@
 <section id="about">
   <h2>About This Project</h2>
   <div class="card">
-    <p style="font-size:18px;">This Smart Water Supply System is designed to monitor, analyze and optimize water distribution. With advanced IoT sensors, cloud processing and intelligent dashboards, it provides complete real‑time control over water flow, consumption trends and critical alerts.</p>
+    <p style="font-size:18px;">This Smart Water Supply System monitors and analyzes water distribution with IoT sensors.</p>
   </div>
 </section>
 
-<!-- ⭐⭐⭐ COMPLAINT FORM SECTION ⭐⭐⭐ -->
+<!-- Complaint Form -->
 <section id="complaints" style="background:#f8f9fa; padding:60px 0;">
     <h2 style="text-align:center;">Submit a Complaint</h2>
     <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
-        If you have any issues related to water supply, timing, pressure, or the system, report them here. The admin will receive your complaint.
+        If you have any issues, report them here.
     </p>
 
     <form style="max-width:600px; margin:0 auto; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
         <label>Full Name</label>
-        <input type="text" placeholder="Enter your name" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+        <input type="text" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
 
         <label>Email</label>
-        <input type="email" placeholder="Enter your email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+        <input type="email" required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
 
         <label>Complaint Category</label>
         <select required style="width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
@@ -164,18 +232,15 @@
         </select>
 
         <label>Description</label>
-        <textarea placeholder="Write your complaint..." required style="width:100%; padding:12px; height:120px; border-radius:8px; border:1px solid #ccc;"></textarea>
+        <textarea required style="width:100%; padding:12px; height:120px; border-radius:8px; border:1px solid #ccc;"></textarea>
 
         <button type="submit" style="width:100%;">Submit Complaint</button>
     </form>
 </section>
 
-<!-- ⭐⭐⭐ AREA SEARCH + ANALYTICS ⭐⭐⭐ -->
+<!-- Area Analytics -->
 <section id="areaAnalytics" style="background:#eef3ff; padding:60px 0;">
     <h2 style="text-align:center;">Area-Based Analytics</h2>
-    <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
-        Enter your area — the system will show you the latest water level, pressure, flow status, and supply condition.
-    </p>
 
     <div style="max-width:500px; margin:0 auto 20px; display:flex; gap:10px;">
         <input id="areaInput" type="text" placeholder="Enter Area Name" 
@@ -186,12 +251,9 @@
     <div id="areaResult" style="max-width:700px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
 </section>
 
-<!-- ⭐⭐⭐ AREA COMPLAINT LOOKUP ⭐⭐⭐ -->
+<!-- Area Complaints -->
 <section id="areaComplaints" style="background:#fff4f4; padding:60px 0;">
     <h2 style="text-align:center;">Area-Based Complaint Lookup (Admin)</h2>
-    <p style="text-align:center; max-width:600px; margin:0 auto 30px;">
-        Enter your area — the system will show recent complaints for that area.
-    </p>
 
     <div style="max-width:500px; margin:0 auto 20px; display:flex; gap:10px;">
         <input id="complaintAreaInput" type="text" placeholder="Enter Area Name" 
@@ -202,13 +264,16 @@
     <div id="complaintResult" style="max-width:800px; margin:0 auto; display:none; background:white; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
 </section>
 
-
-</div> <!-- ⭐ FIXED WIDTH END -->
+</div>
 
 <footer>© 2025 Smart Water System | All Rights Reserved</footer>
 
-
 <script>
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+
 function updateData() {
   document.getElementById('flow').innerHTML = Math.floor(Math.random() * 40) + ' L/min';
   document.getElementById('tank').innerHTML = Math.floor(Math.random() * 100) + '%';
@@ -219,7 +284,6 @@ function generateReport(){
   document.getElementById('today').innerHTML = Math.floor(Math.random() * 500) + 100;
   document.getElementById('month').innerHTML = Math.floor(Math.random() * 5000) + 2000;
 }
-
 
 const areaData = {
     "City Road": {level: "82%", pressure: "High", flow: "Smooth", status: "Normal"},
@@ -285,6 +349,7 @@ function searchComplaints(){
         resultBox.innerHTML = `<p style='color:red;'>No complaints found for this area.</p>`;
     }
 }
+
 </script>
 
 </body>
